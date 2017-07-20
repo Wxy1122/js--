@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lianxi</title>
+</head>
+<body>
+	<label>请输入你喜爱的城市名字：<input type="text" id="aqi-input"></label>
+	<button id="button">确认</button>
+	<div>你喜爱的城市：<span id="aqi-display">未输入</span></div>
+	<script type="text/javascript">
+	(function(){
+		var city=document.getElementById("button");
+		var int=document.getElementById("aqi-input");
+		var out=document.getElementById("aqi-display");
+		city.onclick=function(){
+			out.innerHTML=int.value;
+		};
+	})();
+	</script>
+</body>
+</html>
