@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>lianxi2</title>
+</head>
+<body>
+	<ul id="source">
+	    <li>张三：<b>90</b></li>
+	    <li>李四：<b>70</b></li>
+	    <li>王五：<b>80</b></li>
+	    <li>赵磊：<b>50</b></li>
+	    <li>陈贺：<b>40</b></li>
+	    <li>罗马：<b>32</b></li>
+	    <li>许雷：<b>90</b></li>
+    </ul>
+    <ul id="resort">
+	    <!-- 
+	    <li>第一名：张三：<b>90</b></li>
+	    <li>第二名：张三：<b>90</b></li>
+	    <li>第三名：张三：<b>90</b></li>
+	     -->	
+	</ul>
+	<button id="sort-btn">成绩排序</button>
+	<script type="text/javascript">
+		function getData() {
+			var slist = document.getElementById('source').getElementsByTagName('li');
+			var data = [];
+			for(var i = 0; i < slist.length; i++){
+				var student = slist[i].innerHTML.split('成绩：')[0];
+				var num = slist[i].children[0].innerHTML;
+				data.push([student, num]);
+			}		
+		  return data;		
+		}
+		function sortAqiData(data) {
+			data.sort(function(a, b){
+				return b[1] - a[1];
+			})			
+			return data
+		}		
+		function render(data) {
+			
+			var arr = ['一', '二', '三', '四', '五', '六', '七'];
+			var ul = document.getElementById('resort');
+			for(var i = 0 ;i < data.length; i++){
+				var li = document.createElement('li');
+				li.innerHTML = '第' + arr[i] +'名：' + data[i][0] + '成绩：' + '<b>' + data[i][1] + '</b>';
+				ul.appendChild(li);			
+			}
+		}		
+		function btnHandle() {
+		  var aqiData = getData();
+		  aqiData = sortAqiData(aqiData);
+		  render(aqiData);
+			var button = document.getElementById('sort-btn');
+			button.disabled = 'true';		
+		}		
+		function init() {
+			var button = document.getElementById('sort-btn');
+			button.onclick = function(){
+				btnHandle();
+			}
+		}
+		init();
+	</script>
+</body>
+</html>
