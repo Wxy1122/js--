@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lianxi6</title>
+</head>
+<body>
+	<ol id="test-list">
+	    <li class="lang">Scheme</li>
+	    <li class="lang">JavaScript</li>
+	    <li class="lang">Python</li>
+	    <li class="lang">Ruby</li>
+	    <li class="lang">Haskell</li>
+	</ol>
+	<script type="text/javascript">
+		// sort list:
+		// 父节点
+		var list = document.getElementById('test-list')
+		var childarray = []
+		// 将 list.children转换为数组
+		for (var x of list.children){
+		    childarray.push(x)
+		}
+		// 数组排序
+		childarray.sort(
+		    function(x,y){
+		        if (x.innerText.toUpperCase() > y.innerText.toUpperCase()){
+		            return 1
+		        } else {
+		            return -1
+		        }
+		    }
+		)
+		// 清空父节点下的内容
+		list.innerHTML = ''
+		//重新填入element
+		for (var x of childarray){
+		    list.appendChild(x)
+		}
+		// 测试:
+		;(function () {
+		    var
+		        arr, i,
+		        t = document.getElementById('test-list');
+		    if (t && t.children && t.children.length === 5) {
+		        arr = [];
+		        for (i=0; i<t.children.length; i++) {
+		            arr.push(t.children[i].innerText);
+		        }
+		        if (arr.toString() === ['Haskell', 'JavaScript', 'Python', 'Ruby', 'Scheme'].toString()) {
+		            alert('测试通过!');
+		        }
+		        else {
+		            alert('测试失败: ' + arr.toString());
+		        }
+		    }
+		    else {
+		        alert('测试失败!');
+		    }
+		})();
+	</script>
+</body>
+</html>
